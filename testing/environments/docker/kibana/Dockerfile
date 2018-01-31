@@ -8,7 +8,7 @@ EXPOSE 5601
 ARG DOWNLOAD_URL=https://snapshots.elastic.co/downloads
 ARG ELASTIC_VERSION=7.0.0-alpha1-SNAPSHOT
 ARG CACHE_BUST=1
-ARG XPACK=1
+ARG XPACK
 
 # Healthcheck create by beats team
 RUN yum install update -y epel-release && yum install -y jq

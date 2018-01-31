@@ -1,22 +1,26 @@
 BEAT_NAME={beat}
-BEAT_INDEX_PREFIX={beat}
 BEAT_PATH={beat_path}
 BEAT_GOPATH=$(firstword $(subst :, ,${GOPATH}))
 BEAT_URL=https://${BEAT_PATH}
 BEAT_DOC_URL=https://path/to/{beat}/doc
-COPYRIGHT_TXT=My Company
-COPYRIGHT_YEAR={now.year}
+BEAT_DESCRIPTION=My description
+BEAT_LICENSE=My license
+COPYRIGHT_TXT=My company
+COPYRIGHT_YEAR={current_year}
 VERSION=0.1.0
 
-SYSTEM_TESTS=true
-TEST_ENVIRONMENT=true
-ES_BEATS?=./_beats
-PREFIX?=.
+ES_BEATS=./_beats
+PREFIX=.
 BEATS_VERSION?=master # For specific version: BEATS_VERSION?=6.1
 NOTICE_FILE=NOTICE.txt
 LICENSE_FILE=LICENSE.txt
 NOW=$(shell date -u '+%Y-%m-%dT%H:%M:%S')
 GOBUILD_FLAGS=-i -ldflags "-s -X $(BEAT_PATH)/version.buildTime=$(NOW) -X $(BEAT_PATH)/version.commit=$(COMMIT_ID)"
+
+
+SYSTEM_TESTS=true
+TEST_ENVIRONMENT=true
+TESTING_ENVIRONMENT=snapshot-noxpack
 
 # Path to the libbeachmt Makefile
 -include $(ES_BEATS)/libbeat/scripts/Makefile
@@ -81,4 +85,4 @@ check-full: check
 .PHONY: notice
 notice: python-env
 	@echo "Generating NOTICE.txt"
-	@$(PYTHON_ENV)/bin/python ${ES_BEATS}/dev-tools/generate_notice.py . -e '_beats' -s "./vendor/github.com/elastic/beats" -b "$(BEAT_NAME)" -c $(COPYRIGHT_TXT) -y $(COPYRIGHT_YEAR)
+	@$(PYTHON_ENV)/bin/python ${ES_BEATS}/dev-tools/generate_notice.py . -e '_beats' -s "./vendor/github.com/elastic/beats" -b "$(BEAT_NAME)" -c "$(COPYRIGHT_TXT)" -y "$(COPYRIGHT_YEAR)"
