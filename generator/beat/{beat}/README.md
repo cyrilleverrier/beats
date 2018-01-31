@@ -9,7 +9,7 @@ Ensure that this folder is at the following location:
 
 ### Requirements
 
-* [Golang](https://golang.org/dl/) 1.7
+* [Golang](https://golang.org/dl/) 1.9.2
 
 ### Init Project
 To get running with {Beat} and also install the
@@ -19,12 +19,11 @@ dependencies, run the following command:
 make setup
 ```
 
-It will create a clean git history for each major step. Note that you can always rewrite the history if you wish before pushing your changes.
-
 To push {Beat} in the git repository, run the following commands:
 
 ```
 git remote set-url origin https://{beat_path}
+git commit -m "Initial commit"
 git push origin master
 ```
 
